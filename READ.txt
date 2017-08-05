@@ -1,0 +1,4 @@
+﻿测试
+说明文档
+一个基本的SSH框架已搭建好，Struts2，Hibernate4，Spring3
+实现简单的数据库写入功能
