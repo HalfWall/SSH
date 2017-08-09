@@ -20,15 +20,20 @@ public class UserAction extends ActionSupport{
 	private List<User> users;
 	
 	
-	public String add(){
-		userService.add(user);
-		return SUCCESS;
+	public String register(){
+		if(userService.userExist(user)&&userService.check(user)){
+			userService.add(user);
+			return SUCCESS;
+		}else 
+			return ERROR;
 	}
 	
 	public String list(){
 		users=userService.getUsers();
 		return "list";
 	}
+	
+	
 	
 	
 	public UserService getUserService() {

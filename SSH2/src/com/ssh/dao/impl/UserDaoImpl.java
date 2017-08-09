@@ -18,15 +18,31 @@ import com.ssh.model.User;
 public class UserDaoImpl implements UserDao{
 	private SessionFactory sessionFactory;
 
+	
 	public void save(User u) {
 		Session s = sessionFactory.getCurrentSession();
 		//s.beginTransaction();
 		s.save(u);
 		//s.getTransaction().commit();
+	}
+	
+	public boolean exist(User u) {
+		Session s = sessionFactory.getCurrentSession();
+		long count =(Long) s.createQuery("select count(*) from User u where u.name= :name")
+					.setString("name", u.getName())
+					.uniqueResult();
+		
+		if(count>0){
+			System.out.print("user existed");
+			return false;
+		}
+		else
+			return true;
 		
 	}
 
 
+	
 	public List<User> getUsers() {
 		Session s = sessionFactory.getCurrentSession();
 		//s.beginTransaction();
@@ -46,6 +62,9 @@ public class UserDaoImpl implements UserDao{
 	public void setSessionFactory(SessionFactory sessionFactory) {
 		this.sessionFactory = sessionFactory;
 	}
+
+
+	
 
 
 

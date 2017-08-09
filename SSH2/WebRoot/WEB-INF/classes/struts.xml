@@ -10,9 +10,9 @@
 
 
 	<package name="User" extends="struts-default">
-		<action name="u" class="com.ssh.action.UserAction" method="add">
+		<action name="u" class="com.ssh.action.UserAction" method="register">
 			<result name="success">registerSuccess.jsp</result>
-			<result name="list">list.jsp</result>
+			<result name="error">registerFail.jsp</result>
 		</action>
 	</package>
 
