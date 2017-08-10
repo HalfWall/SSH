@@ -11,6 +11,7 @@ import org.hibernate.service.ServiceRegistryBuilder;
 import org.springframework.orm.hibernate3.HibernateTemplate;
 import org.springframework.stereotype.Component;
 
+import com.opensymphony.xwork2.ActionContext;
 import com.ssh.dao.UserDao;
 import com.ssh.model.User;
 
@@ -33,15 +34,30 @@ public class UserDaoImpl implements UserDao{
 					.uniqueResult();
 		
 		if(count>0){
-			System.out.print("user existed");
+			ActionContext.getContext().getSession().put("tip", "用户名已存在");
+			System.out.print("用户名已存在");
 			return false;
 		}
-		else
+		else{
+			ActionContext.getContext().getSession().put("tip2", "用户名不存在");
 			return true;
-		
+		}
 	}
 
 
+	public boolean login(User u) {
+		Session s = sessionFactory.getCurrentSession();
+		//User user=(User)s.get(User.class, u.getName());
+		String password =(String)s.createQuery("select password from User u where u.name = :name")
+			.setString("name", u.getName())
+			.uniqueResult();
+		if(password.equals(u.getPassword())){
+			return true;
+		}else
+			ActionContext.getContext().getSession().put("tip2", "密码错误");
+			return false;
+	}
+	
 	
 	public List<User> getUsers() {
 		Session s = sessionFactory.getCurrentSession();
@@ -62,6 +78,8 @@ public class UserDaoImpl implements UserDao{
 	public void setSessionFactory(SessionFactory sessionFactory) {
 		this.sessionFactory = sessionFactory;
 	}
+
+	
 
 
 	

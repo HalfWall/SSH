@@ -6,8 +6,21 @@
 	http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">
   <display-name></display-name>	
   <welcome-file-list>
-    <welcome-file>register.jsp</welcome-file>
+    <welcome-file>login.jsp</welcome-file>
   </welcome-file-list>
+  
+  <!-- servlet过滤器 -->
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>PINcode</servlet-name>
+    <servlet-class>com.ssh.util.PINcode</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>PINcode</servlet-name>
+    <url-pattern>/PINcode.jpg</url-pattern>
+  </servlet-mapping>
   
   <!-- openSessionInView过滤器 -->
   <filter>

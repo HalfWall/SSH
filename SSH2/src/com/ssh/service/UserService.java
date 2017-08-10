@@ -4,10 +4,13 @@ package com.ssh.service;
 import java.util.List;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpSession;
 
+import org.apache.struts2.ServletActionContext;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.opensymphony.xwork2.ActionContext;
 import com.ssh.dao.UserDao;
 import com.ssh.dao.impl.UserDaoImpl;
 import com.ssh.model.User;
@@ -16,6 +19,8 @@ import com.ssh.model.User;
 public class UserService {
 	
 	private UserDao userDao;
+	
+	
 	
 	//@Transactional
 	public void add(User user){
@@ -37,6 +42,7 @@ public class UserService {
 	
 	public boolean checkUser(String user){
 		if(user.length()==0){
+			ActionContext.getContext().getSession().put("tip", "用户名不能为空");
 			System.out.println("用户名不能为空");
 			return false;
 		}
@@ -47,6 +53,7 @@ public class UserService {
 	
 	public boolean checkPwd1(String pwd1){
 		if(pwd1.length()==0){
+			ActionContext.getContext().getSession().put("tip", "密码不能为空");
 			System.out.println("密码不能为空");
 			return false;
 		}
@@ -57,6 +64,7 @@ public class UserService {
 	
 	public boolean checkPwd2(String pwd1,String pwd2){
 		if(!pwd1.equals(pwd2)){
+			ActionContext.getContext().getSession().put("tip", "两次密码不同");
 			System.out.println("两次密码不同");
 			return false;
 		}
@@ -67,6 +75,7 @@ public class UserService {
 	
 	public boolean checkEmail(String email){
 		if(email.indexOf("@") == -1){
+			ActionContext.getContext().getSession().put("tip", "邮箱格式错误");
 			System.out.println("邮箱格式错误");
 			return false;
 		}
@@ -77,9 +86,34 @@ public class UserService {
 
 	
 	
+	public boolean login(User user){
+		return userDao.login(user);
+	}
+	
+	public boolean checkPIN(User user){
+		
+		HttpSession sessions = ServletActionContext.getRequest().getSession();
+		String validateC = (String) sessions.getAttribute("checkCode");
+//		System.out.println(validateC);
+//		System.out.println(user.getPinCode());
+//		System.out.println(user.getName());
+		if (user.getPinCode().equals(validateC)) {
+			return true;
+		} else {
+			ActionContext.getContext().getSession().put("tip2", "验证码错误");
+			return false;
+		}
+
+	}
+	
+	
+	
 	public List<User> getUsers(){
 		return userDao.getUsers();
 	}
+	
+	
+	
 	
 	
 	

@@ -20,6 +20,7 @@ public class User {
 	private String email;
 	private String sex;
 	private int acSum;
+	private String pinCode;
 	private Set<Problem> problems = new HashSet<Problem>();
 	
 	@Id
@@ -67,6 +68,13 @@ public class User {
 	public void setAcSum(int acSum) {
 		this.acSum = acSum;
 	}
+	@Transient
+	public String getPinCode() {
+		return pinCode;
+	}
+	public void setPinCode(String pinCode) {
+		this.pinCode = pinCode;
+	}
 	
 	
 	@ManyToMany
@@ -79,6 +87,7 @@ public class User {
 	public void setProblems(Set<Problem> problems) {
 		this.problems = problems;
 	}
+	
 	
 	
 	

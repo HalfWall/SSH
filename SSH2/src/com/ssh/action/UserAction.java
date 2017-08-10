@@ -28,6 +28,14 @@ public class UserAction extends ActionSupport{
 			return ERROR;
 	}
 	
+	public String login(){
+		if((!userService.userExist(user))&&userService.login(user)&&userService.checkPIN(user))
+			return SUCCESS;
+		else
+			return ERROR;
+	} 
+	
+	
 	public String list(){
 		users=userService.getUsers();
 		return "list";
