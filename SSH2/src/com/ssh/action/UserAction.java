@@ -18,6 +18,7 @@ public class UserAction extends ActionSupport{
 	private User user = new User();
 	private UserService userService;
 	private List<User> users;
+	private int id;
 	
 	
 	public String register(){
@@ -29,8 +30,10 @@ public class UserAction extends ActionSupport{
 	}
 	
 	public String login(){
-		if((!userService.userExist(user))&&userService.login(user)&&userService.checkPIN(user))
-			return SUCCESS;
+		if(userService.loginManager(user)&&userService.checkPIN(user))
+			return "manager";
+		else if((!userService.userExist(user))&&userService.login(user)&&userService.checkPIN(user))
+				return "success"; 
 		else
 			return ERROR;
 	} 
@@ -38,8 +41,23 @@ public class UserAction extends ActionSupport{
 	
 	public String list(){
 		users=userService.getUsers();
-		return "list";
+		return "u_list";
 	}
+	
+	public String delete(){
+		userService.delete(id);
+		users=userService.getUsers();
+		return "u_list";
+	}
+	
+	public String cancel(){
+		userService.cancel();
+		return "cancel";
+	}
+	
+	
+	
+	
 	
 	
 	
@@ -67,6 +85,14 @@ public class UserAction extends ActionSupport{
 
 	public void setUsers(List<User> users) {
 		this.users = users;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 
 }

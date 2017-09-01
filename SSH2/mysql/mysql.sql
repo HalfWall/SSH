@@ -12,9 +12,10 @@ content varchar(255),
 testIn char(20),
 testOut char(20));
 
-create table result(id int primary key auto_increment,
+create table status(id int primary key auto_increment,
 time char(20),
-date char(20),
-result char(20),
+date char(50),
+result char(50),
+code char(255),
 user_id int references user(id),
-priblem_id int references problem(id));
+problem_id int references problem(id));

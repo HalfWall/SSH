@@ -21,7 +21,7 @@ public class UserService {
 	private UserDao userDao;
 	
 	
-	
+	//--------------------×¢²á---------------------------
 	//@Transactional
 	public void add(User user){
 		userDao.save(user);
@@ -85,9 +85,16 @@ public class UserService {
 	}
 
 	
-	
+	//------------------------------µÇÂ¼------------------------------
 	public boolean login(User user){
 		return userDao.login(user);
+	}
+	
+	public boolean loginManager(User user){
+		if(user.getName().equals("admin")&&user.getPassword().equals("123456"))
+			return true;
+		else
+			return false;
 	}
 	
 	public boolean checkPIN(User user){
@@ -113,6 +120,18 @@ public class UserService {
 	}
 	
 	
+	public void delete(int id){
+		 userDao.delete(id);
+	}
+	
+	public void cancel() {
+		ActionContext.getContext().getSession().put("userName", null);
+	}
+
+	
+	
+	
+	
 	
 	
 	
@@ -126,4 +145,5 @@ public class UserService {
 		this.userDao = userDao;
 	}
 
+	
 }

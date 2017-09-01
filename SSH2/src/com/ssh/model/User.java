@@ -78,7 +78,7 @@ public class User {
 	
 	
 	@ManyToMany
-	@JoinTable(name="result",
+	@JoinTable(name="status",
 			joinColumns=@JoinColumn(name="user_id"),
 			inverseJoinColumns=@JoinColumn(name="problem_id"))
 	public Set<Problem> getProblems() {

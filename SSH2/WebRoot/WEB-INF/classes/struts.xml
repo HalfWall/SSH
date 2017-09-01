@@ -9,17 +9,39 @@
 
 
 
-	<package name="User" extends="struts-default">
+	<package name="User" namespace="/User" extends="struts-default">
 	
-		<action name="register" class="com.ssh.action.UserAction" method="register">
-			<result name="success">registerSuccess.jsp</result>
-			<result name="error">registerFail.jsp</result>
+		<action name="*_*" class="com.ssh.action.{1}Action" method="{2}">
+			<result name="success">/User/{1}_{2}_Success.jsp</result>
+			<result name="error">/User/{1}_{2}_Fail.jsp</result>
+			<result name="u_list">/User/User_list.jsp</result>
+			<result name="p_list">/User/Problem_list.jsp</result>
+			<result name="manager">/User/manager.jsp</result>
+			<result name="cancel">/User/User_login_Success.jsp</result>
+			<result name="load">/User/User_answer.jsp</result>
 		</action>
 		
-		<action name="login" class="com.ssh.action.UserAction" method="login">
-			<result name="success">loginSuccess.jsp</result>
-			<result name="error">loginFail.jsp</result>
+	</package>
+	
+	
+	<package name="Problem" namespace="/Problem" extends="struts-default">
+	
+		<action name="*_*" class="com.ssh.action.{1}Action" method="{2}">
+			<result name="success">/Problem/{1}_{2}_Success.jsp</result>
+			<result name="error">/Problem/{1}_{2}_Fail.jsp</result>
+			<result name="p_list">/Problem/Problem_list.jsp</result>
+			<result name="load">/Problem/Problem_update.jsp</result>
 		</action>
+		
+	</package>
+	
+	
+	<package name="Status" namespace="/Status" extends="struts-default">
+	
+		<action name="*_*" class="com.ssh.action.{1}Action" method="{2}">
+			<result name="success">/Status/{1}_{2}_Success.jsp</result>
+		</action>
+		
 	</package>
 
 

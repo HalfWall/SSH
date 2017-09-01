@@ -9,5 +9,6 @@ public interface UserDao {
 	public boolean exist(User u);
 	public boolean login(User u);
 	public List<User> getUsers();
+	public void delete(int id);
 
 }
