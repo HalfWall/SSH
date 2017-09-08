@@ -18,6 +18,7 @@ public class StatusAction extends ActionSupport{
 	public String judge() throws IOException, InterruptedException{
 		statusService.judge(status,id);
 		statusService.add(id);
+		statuses = statusService.list();
 		return SUCCESS;
 	}
 

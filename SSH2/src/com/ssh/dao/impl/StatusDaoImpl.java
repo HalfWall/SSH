@@ -1,5 +1,7 @@
 package com.ssh.dao.impl;
 
+import java.util.List;
+
 import javax.annotation.Resource;
 
 import org.hibernate.Session;
@@ -31,28 +33,30 @@ public class StatusDaoImpl implements StatusDao{
 		User u = (User)s.get(User.class, userId);
 		Problem pro  = (Problem)s.get(Problem.class, proId);
 		
-
 		status.setDate(date);
 		status.setCode(code);
 		status.setTime(time);
 		status.setResult(ans);
-		
 		status.setUser(u);
 		status.setProblem(pro);
 		
-		
 		s.save(status);
-		
-		
 	}
 
-	
+	public List<Status> list() {
+		Session s = sessionFactory.getCurrentSession();
+		List<Status> statuses =(List<Status>)s.createQuery("from Status order by id desc").list();
+		return statuses;
+	}
 	
 	
 	
 	
 	
 
+	
+	
+	
 	public SessionFactory getSessionFactory() {
 		return sessionFactory;
 	}
@@ -61,5 +65,7 @@ public class StatusDaoImpl implements StatusDao{
 	public void setSessionFactory(SessionFactory sessionFactory) {
 		this.sessionFactory = sessionFactory;
 	}
+
+
 
 }

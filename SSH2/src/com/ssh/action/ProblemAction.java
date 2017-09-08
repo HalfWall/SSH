@@ -45,8 +45,12 @@ public class ProblemAction extends ActionSupport{
 	}
 	
 	public String update(){
-		problemService.update(problem);
-		return "success";
+		if(problemService.update(problem)){
+			problemService.fileAdd(problem);
+			return "success";
+		}
+		else
+			return "error";
 	}
 	
 	

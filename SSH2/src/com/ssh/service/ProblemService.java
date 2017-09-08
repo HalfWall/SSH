@@ -40,8 +40,9 @@ public class ProblemService {
 		return problemDao.load(id);
 	}
 	
-	public void update(Problem pro) {
+	public boolean update(Problem pro) {
 		problemDao.update(pro);
+		return true;
 	}
 	
 	

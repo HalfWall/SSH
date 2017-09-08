@@ -6,6 +6,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Date;
+import java.util.List;
 
 import javax.annotation.Resource;
 
@@ -60,7 +61,9 @@ public class StatusService {
 		statusDao.add(id);
 	}
 	
-	
+	public List<Status> list(){
+		return statusDao.list();
+	}
 	
 	
 

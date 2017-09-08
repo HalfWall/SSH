@@ -3,7 +3,7 @@
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
-
+<%@taglib prefix="s" uri="/struts-tags" %>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
   <head>
@@ -23,6 +23,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </head>
   
   <body>
-    judge success <br>
+    <s:iterator value="statuses">
+    	<s:property value="id"/>|
+    	<s:property value="user.id"/>|
+    	<s:property value="problem.id"/>|
+    	<s:property value="date"/>|
+    	<s:property value="time"/>|
+    	<s:property value="result"/>
+    	<hr>
+    </s:iterator>
   </body>
 </html>
