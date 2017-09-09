@@ -6,19 +6,21 @@ import java.util.List;
 import com.opensymphony.xwork2.ActionSupport;
 import com.ssh.model.Status;
 import com.ssh.service.StatusService;
+import com.ssh.service.UserService;
 
 public class StatusAction extends ActionSupport{
 	private Status status;
 	private List<Status> statuses;
 	private StatusService statusService;
 	private int id;
-	
+	private UserService userService;
 	
 	
 	public String judge() throws IOException, InterruptedException{
 		statusService.judge(status,id);
 		statusService.add(id);
 		statuses = statusService.list();
+		userService.sum();
 		return SUCCESS;
 	}
 
@@ -61,6 +63,14 @@ public class StatusAction extends ActionSupport{
 
 	public void setId(int id) {
 		this.id = id;
+	}
+
+	public UserService getUserService() {
+		return userService;
+	}
+
+	public void setUserService(UserService userService) {
+		this.userService = userService;
 	}
 	
 

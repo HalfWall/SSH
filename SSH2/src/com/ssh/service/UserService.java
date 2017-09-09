@@ -101,9 +101,7 @@ public class UserService {
 		
 		HttpSession sessions = ServletActionContext.getRequest().getSession();
 		String validateC = (String) sessions.getAttribute("checkCode");
-//		System.out.println(validateC);
-//		System.out.println(user.getPinCode());
-//		System.out.println(user.getName());
+
 		if (user.getPinCode().equals(validateC)) {
 			return true;
 		} else {
@@ -114,21 +112,25 @@ public class UserService {
 	}
 	
 	
-	
+	//用户列表
 	public List<User> getUsers(){
 		return userDao.getUsers();
 	}
 	
-	
+	//删除用户
 	public void delete(int id){
 		 userDao.delete(id);
 	}
 	
+	//注销用户
 	public void cancel() {
 		ActionContext.getContext().getSession().put("userName", null);
 	}
 
-	
+	//AcSum
+	public void sum(){
+		userDao.sum();
+	}
 	
 	
 	

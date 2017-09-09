@@ -23,6 +23,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </head>
   
   <body>
+  	${ans}
+  	<br>
+  	<br>
+  	<br>
     <s:iterator value="statuses">
     	<s:property value="id"/>|
     	<s:property value="user.id"/>|
@@ -32,5 +36,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     	<s:property value="result"/>
     	<hr>
     </s:iterator>
+    <br>
+    <a href="User/Problem_list">返回</a>
   </body>
 </html>

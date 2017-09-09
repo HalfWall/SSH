@@ -3,13 +3,13 @@
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
-<%@taglib prefix="s" uri="/struts-tags" %>
+<%@taglib prefix="s" uri="/struts-tags"%>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
   <head>
     <base href="<%=basePath%>">
     
-    <title>题目列表</title>
+    <title>个人信息</title>
     
 	<meta http-equiv="pragma" content="no-cache">
 	<meta http-equiv="cache-control" content="no-cache">
@@ -23,12 +23,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </head>
   
   <body>
-     <s:iterator value="problems">
-    	<s:property value="id"/>
-    	<a href="User/Problem_load?id=<s:property value="id"/>"><s:property value="title"/></a>
-    	<br>
-    </s:iterator>
-    <hr>
-    <a href="User/User_login_Success.jsp">返回</a>
+    	<input type="text" name="user.name" value="<s:property value="user.name"/>"><br>
+    	<input type="text" name="user.sex" value="<s:property value="user.sex"/>"><br>
+    	<input type="text" name="user.email" value="<s:property value="user.email"/>"><br>
+    	<input type="text" name="user.acSum" value="<s:property value="user.acSum"/>"><br>
   </body>
 </html>

@@ -65,8 +65,15 @@ public class StatusService {
 		return statusDao.list();
 	}
 	
-	
 
+	
+	
+	
+	
+	
+	
+	
+	
 	public StatusDao getStatusDao() {
 		return statusDao;
 	}

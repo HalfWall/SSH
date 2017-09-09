@@ -20,6 +20,7 @@ public class UserDaoImpl implements UserDao{
 	private SessionFactory sessionFactory;
 
 	
+	//×¢²á
 	public void save(User u) {
 		Session s = sessionFactory.getCurrentSession();
 		s.save(u);
@@ -42,17 +43,21 @@ public class UserDaoImpl implements UserDao{
 		}
 	}
 
+	//µÇÂ¼
 	public boolean login(User u) {
 		Session s = sessionFactory.getCurrentSession();
-		String password =(String)s.createQuery("select password from User u where u.name = :name")
-			.setString("name", u.getName())
-			.uniqueResult();
+		
 		int id =(Integer) s.createQuery("select id from User u where u.name = :name")
 				.setString("name", u.getName())
 				.uniqueResult();
-		if(password.equals(u.getPassword())){
+		
+		User user = (User)s.get(User.class, id);
+		
+		if(user.getPassword().equals(u.getPassword())){
 			ActionContext.getContext().getSession().put("userId", id);
 			ActionContext.getContext().getSession().put("userName", u.getName());
+			ActionContext.getContext().getSession().put("userSum", user.getAcSum());
+			
 			return true;
 		}else
 			ActionContext.getContext().getSession().put("tip2", "ÃÜÂë´íÎó");
@@ -73,7 +78,24 @@ public class UserDaoImpl implements UserDao{
 		s.delete(u);
 	}
 	
-	
+	public void sum() {
+		Session s = sessionFactory.getCurrentSession();
+		
+		String ans  = (String)ActionContext.getContext().getSession().get("ans");
+		int sum = (Integer) ActionContext.getContext().getSession().get("userSum");
+		int id  = (Integer) ActionContext.getContext().getSession().get("userId");
+		
+		if(ans.equals("Accepted")){
+			sum=sum+1;
+		}
+		s.createQuery("update User u set u.acSum = :acSum where u.id = :id")
+			.setInteger("acSum", sum)
+			.setInteger("id", id)
+			.executeUpdate();
+		
+		ActionContext.getContext().getSession().put("userSum", sum);
+			
+	}
 	
 	
 	
@@ -91,25 +113,7 @@ public class UserDaoImpl implements UserDao{
 	@Resource
 	public void setSessionFactory(SessionFactory sessionFactory) {
 		this.sessionFactory = sessionFactory;
-	}
-
-	
-
-
-	
-
-
-
-
-	
-
-
-
-
-
-	
-
-	
+	}	
 
 
 }

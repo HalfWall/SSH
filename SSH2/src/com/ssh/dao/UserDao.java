@@ -10,5 +10,6 @@ public interface UserDao {
 	public boolean login(User u);
 	public List<User> getUsers();
 	public void delete(int id);
+	public void sum();
 
 }
