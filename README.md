@@ -31,9 +31,14 @@ OJ项目SSH版本
 	
 	4.用户做题
 		1）点击题目列表
-		2）进入代码提交界面
+		2）提交代码
 		3）编译代码
-		4）将运行结果与对应的.out文件比较
+			1-Accepted
+			2-Wrong answer
+			3-compile error
+			4-Timelimit Exceed
+		4）若结果为Accepted，用户acSum加一	
+		
 		
 	5.管理员添加题目
 		1）输入题目名，题目内容，输入，输出
