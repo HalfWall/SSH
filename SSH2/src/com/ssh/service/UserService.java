@@ -132,7 +132,9 @@ public class UserService {
 		userDao.sum();
 	}
 	
-	
+	public User load(int id){
+		return userDao.load(id);
+	}
 	
 	
 	

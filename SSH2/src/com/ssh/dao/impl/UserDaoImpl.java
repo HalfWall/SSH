@@ -71,13 +71,14 @@ public class UserDaoImpl implements UserDao{
 		return users;
 	}
 
-	
+	//删除用户
 	public void delete(int id){
 		Session s = sessionFactory.getCurrentSession();
 		User u =(User)s.get(User.class, id);
 		s.delete(u);
 	}
 	
+	//更新用户AcSum
 	public void sum() {
 		Session s = sessionFactory.getCurrentSession();
 		
@@ -97,6 +98,16 @@ public class UserDaoImpl implements UserDao{
 			
 	}
 	
+
+	//load用户信息
+	public User load(int id) {
+		Session s = sessionFactory.getCurrentSession();
+		User u = (User)s.load(User.class, id);
+		return u;
+	}	
+	
+	
+	
 	
 	
 	
@@ -113,7 +124,7 @@ public class UserDaoImpl implements UserDao{
 	@Resource
 	public void setSessionFactory(SessionFactory sessionFactory) {
 		this.sessionFactory = sessionFactory;
-	}	
+	}
 
 
 }

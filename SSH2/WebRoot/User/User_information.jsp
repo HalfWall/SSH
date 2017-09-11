@@ -23,9 +23,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </head>
   
   <body>
-    	<input type="text" name="user.name" value="<s:property value="user.name"/>"><br>
-    	<input type="text" name="user.sex" value="<s:property value="user.sex"/>"><br>
-    	<input type="text" name="user.email" value="<s:property value="user.email"/>"><br>
-    	<input type="text" name="user.acSum" value="<s:property value="user.acSum"/>"><br>
+    	用户名：<input type="text" name="user.name" value="<s:property value="user.name"/>" readonly><br>
+    	性别：<input type="text" name="user.sex" value="<s:property value="user.sex"/>" readonly><br>
+    	邮箱<input type="text" name="user.email" value="<s:property value="user.email"/>" readonly><br>
+    	AcSum：<input type="text" name="user.acSum" value="<s:property value="user.acSum"/>" readonly><br>
   </body>
 </html>

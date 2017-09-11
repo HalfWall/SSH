@@ -55,7 +55,10 @@ public class UserAction extends ActionSupport{
 		return "cancel";
 	}
 	
-	
+	public String load(){
+		this.user = this.userService.load(id);
+		return "u_load";
+	}
 	
 	
 	

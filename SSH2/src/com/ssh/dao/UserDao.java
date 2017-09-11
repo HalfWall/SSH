@@ -11,5 +11,6 @@ public interface UserDao {
 	public List<User> getUsers();
 	public void delete(int id);
 	public void sum();
+	public User load(int id);
 
 }
